@@ -8,7 +8,7 @@ class LinkedList {
 	public:
 		LinkedList();
 		T first();
-		T frontBackSplit(node<T> *, node<T> *); // forgot a ; at the end.
+		T frontBackSplit(node<T> **, node<T> **); // forgot a ; at the end, and to declare it as a **.
 		void insertAt(int, int);
 		bool isEmpty();
 		void makeEmpty();
@@ -17,7 +17,6 @@ class LinkedList {
 		T pop();
 		void pushBack(T);
 		T size();
-
 
 		/*LinkedList();
 		~LinkedList();
@@ -65,36 +64,19 @@ T LinkedList<T>::first(){
 }
 
 template <class T>
-T LinkedList<T>::frontBackSplit(node<T> *front, node<T> *back) {
-	front = root;
-	back = root;
-
-	// to reference a property from the current object, use -> instead of .
-	if(this->size() % 2 == 0) {
-		int iBack = this->size() / 2;
-		while(iBack > 1){
-			back = back->next;
-			iBack--;
-		}
-
-		node<T> *aux = back;
-		back = back->next;
-		aux->next = nullptr; // null is written all caps. 
-		// NULL has been changed to nullptr in C++
-	}else{
-		int iBack = (this->size() / 2) + 1;
-
-		// had extra declaration of node pointers back and front. (moved to top of method)
-
-		while(iBack > 1){
-			back = back->next;
-			iBack--;
-		}
-
-		node<T> *aux = back;
-		back = back->next;
-		aux->next = nullptr;
+T LinkedList<T>::frontBackSplit(node<T> **front, node<T> **back) {
+	node<T> *aux = new node<T>;
+	node<T> *frontAux = aux;
+	node<T> *backAux = aux;
+	aux->next = root;
+	
+	while(backAux != NULL && backAux->next != NULL){
+		backAux = backAux->next->next;
+		frontAux = frontAux->next;
 	}
+	*back = frontAux->next;
+	frontAux->next = NULL;
+	*front = root;
 }
 
 template <class T>

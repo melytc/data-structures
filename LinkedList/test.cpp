@@ -122,7 +122,7 @@ TEST_CASE("empty() correctly destroys the list and sets root to NULL", "[LinkedL
 }
 
 
-/* // FrontBackSplit()
+// FrontBackSplit()
 TEST_CASE("FrontBackSplit() correctly returns the two halves", "[LinkedList]") {
 	LinkedList<int> a;
 	a.pushBack(10);
@@ -158,8 +158,9 @@ TEST_CASE("FrontBackSplit() correctly returns the two halves", "[LinkedList]") {
 	x = NULL;
 	y = NULL;
 
-} */
-/* TEST_CASE("FrontBackSplit(): in odd-numbered lists the extra element is in the front list", "[LinkedList]") {
+}
+
+TEST_CASE("FrontBackSplit(): in odd-numbered lists the extra element is in the front list", "[LinkedList]") {
 	LinkedList<int> a;
 	a.pushBack(10);
 	a.pushBack(20);
@@ -173,7 +174,7 @@ TEST_CASE("FrontBackSplit() correctly returns the two halves", "[LinkedList]") {
 	REQUIRE(y->data == 30);
 	REQUIRE(y->next == NULL);
 
-} */
+}
 
 // void insertAt(int, int)
 TEST_CASE("insertAt(i) correctly inserts a new item at position i \n(provided i is in the range [0, length])", "[LinkedList]") {
