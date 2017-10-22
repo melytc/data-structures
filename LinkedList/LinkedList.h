@@ -136,21 +136,26 @@ T LinkedList<T>::first(){
 
 template <class T>
 void LinkedList<T>::frontBackSplit(node<T> **front, node<T> **back) {
-	node<T> *aux = new node<T>;
-	node<T> *frontAux = aux;
-	node<T> *backAux = aux;
-	aux->next = root;
-	
-	while(backAux != NULL && backAux->next != NULL){
-		backAux = backAux->next->next;
-		frontAux = frontAux->next;
+	// forgot case when size() is 1, and both pointers should be pointing to the same node (root).
+	if(size() == 1){
+		*front = root;
+		*back = root;
+	} else{
+		node<T> *aux = new node<T>;
+		aux->next = root;	
+		node<T> *frontAux = aux;
+		node<T> *backAux = aux;
+
+		// When trying to divde the list, move front pointer once and back pointer twice.
+		while(backAux != nullptr && backAux->next != nullptr){
+			backAux = backAux->next->next;
+			frontAux = frontAux->next;
+		}
+
+		*back = frontAux->next;
+		frontAux->next = nullptr;
+		*front = root;
 	}
-	*back = frontAux->next;
-	frontAux->next = NULL;
-	*front = root;
-	delete frontAux;
-	delete backAux;
-	delete aux;
 }
 
 template <class T>
@@ -173,10 +178,7 @@ void LinkedList<T>::insertAt(int iIndex, int iElem){
 		newnode->data = iElem;
 		newnode->next = others;
 		aux->next = newnode;
-		delete others;
-		delete newnode;
 	}
-	delete aux;
 }
 
 template <class T>

@@ -209,7 +209,6 @@ TEST_CASE("11) pop() correctly returns the first element", "[LinkedList]") {
 	REQUIRE(x.size() == 0);
 	REQUIRE(x.isEmpty());
 	
-	
 	x.pushBack(10);
 	x.push(20);
 	x.pop();
