@@ -7,8 +7,10 @@ template <class T>
 class LinkedList {
 	public:
 		LinkedList();
+		void deleteFirst();
+		void deleteLast();
 		T first();
-		T frontBackSplit(node<T> **, node<T> **); // forgot a ; at the end, and to declare it as a **.
+		void frontBackSplit(node<T> **, node<T> **); // forgot a ; at the end, and to declare parameters as a **.
 		void insertAt(int, int);
 		bool isEmpty();
 		void makeEmpty();
@@ -18,14 +20,11 @@ class LinkedList {
 		void pushBack(T);
 		T size();
 
-		/*LinkedList();
-		~LinkedList();
+		/*
 		void borra();
 		void addFirst(T data);
 		void addLast(T data);
 		bool add(T data, int pos);
-		void deleteFirst();
-		void deleteLast();
 		bool del(int pos);
 		int delAll();
 		bool isEmpty();
@@ -57,6 +56,24 @@ LinkedList<T>::LinkedList(){
 	root = nullptr;
 }
 
+template <class T>
+void LinkedList<T>::deleteFirst(){
+	node<T> *aux = root;
+	root = aux->next;
+	delete aux;
+}
+
+template <class T>
+void LinkedList<T>::deleteLast(){
+	node<T> *aux = root;
+	while(aux->next->next != nullptr){
+		aux = aux->next;
+	}
+	node<T> *last = aux->next;
+	aux->next = nullptr;
+	delete last;
+}
+
 // Added template header to all methods.
 template <class T>
 T LinkedList<T>::first(){
@@ -64,7 +81,7 @@ T LinkedList<T>::first(){
 }
 
 template <class T>
-T LinkedList<T>::frontBackSplit(node<T> **front, node<T> **back) {
+void LinkedList<T>::frontBackSplit(node<T> **front, node<T> **back) {
 	node<T> *aux = new node<T>;
 	node<T> *frontAux = aux;
 	node<T> *backAux = aux;
@@ -77,6 +94,9 @@ T LinkedList<T>::frontBackSplit(node<T> **front, node<T> **back) {
 	*back = frontAux->next;
 	frontAux->next = NULL;
 	*front = root;
+	delete frontAux;
+	delete backAux;
+	delete aux;
 }
 
 template <class T>
@@ -99,7 +119,10 @@ void LinkedList<T>::insertAt(int iIndex, int iElem){
 		newnode->data = iElem;
 		newnode->next = others;
 		aux->next = newnode;
+		delete others;
+		delete newnode;
 	}
+	delete aux;
 }
 
 template <class T>

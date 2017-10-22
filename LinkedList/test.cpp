@@ -1,4 +1,5 @@
 // Test made by Hector Rincon.
+// Modified by Melissa Treviño.
 
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
@@ -10,13 +11,15 @@ using namespace std;
 // 	[] operator get
 // 	pushBack
 // 	push
-// 	int first
-// 	int size
+// 	T first
+// 	T size
 // 	void empty
 // 	bool isEmpty
 // 	frontBackSplit
 // 	insertAt
-// 	int pop()
+// 	T pop()
+//	deleteFirst
+//	deleteLast
 
 // bool isEmpty()
 TEST_CASE("isEmpty operation correctly returns whether a list is empty", "[LinkedList]"){
@@ -207,7 +210,7 @@ TEST_CASE("pop() correctly returns the first element", "[LinkedList]") {
 	REQUIRE(x.isEmpty());
 }
 
-TEST_CASE("pop() correctly removes the first element from the list", "[LinkedList]") {
+TEST_CASE("pop() correctly removes the first element from the list and returns its element", "[LinkedList]") {
 	LinkedList<int> x;
 	x.pushBack(10);
 	x.push(20);
@@ -216,3 +219,24 @@ TEST_CASE("pop() correctly removes the first element from the list", "[LinkedLis
 	REQUIRE(x.first() == 10);
 }
 
+// deleteFirst()
+TEST_CASE("deleteFirst() correctly removes the first element from the list", "[LinkedList]") {
+	LinkedList<int> x;
+	x.push(1);
+	x.push(2);
+	x.push(3);
+	x.deleteFirst();
+	REQUIRE(x.size() == 2);
+	REQUIRE(x.first() == 2);
+}
+
+// deleteLast()
+TEST_CASE("deleteLast() correctly removes the last element from the list", "[LinkedList]") {
+	LinkedList<int> x;
+	x.push(1);
+	x.push(2);
+	x.push(3);
+	x.deleteLast();
+	REQUIRE(x.size() == 2);
+	REQUIRE(x[1] == 2);
+}
