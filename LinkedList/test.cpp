@@ -239,42 +239,6 @@ TEST_CASE("13) deleteLast() correctly removes the last element from the list", "
 	REQUIRE(x[1] == 2);
 }
 
-// addFirst()
-TEST_CASE("14) addFirst correctly adds an element as the first element of the list", "[LinkedList") {
-	LinkedList<int> x;
-	
-	// empty case
-	x.addFirst(10);
-	REQUIRE(x.size() == 1);
-	REQUIRE(x[0] == 10);
-
-	// not empty case
-	x.push(10);
-	x.push(20);
-	x.push(30);
-	x.addFirst(100);
-	REQUIRE(x.size() == 4);
-	REQUIRE(x[0] == 100);
-}
-
-// addLast()
-TEST_CASE("15) addLast correctly adds an element as the last element of the list", "[LinkedList") {
-	LinkedList<int> x;
-	
-	// empty case 
-	x.addLast(10);
-	REQUIRE(x.size() == 1);
-	REQUIRE(x[0] == 10);
-
-	// not empty case
-	x.push(10);
-	x.push(20);
-	x.push(30);
-	x.addLast(100);
-	REQUIRE(x.size() == 4);
-	REQUIRE(x[3] == 100);
-}
-
 // add(T, int)
 TEST_CASE("16) add(T, int) correctly adds an element in the position required", "[LinkedList") {
 	LinkedList<int> x;

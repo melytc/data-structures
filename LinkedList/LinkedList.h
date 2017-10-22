@@ -8,8 +8,6 @@ class LinkedList {
 	public:
 		LinkedList();
 		bool add(T, int);
-		void addFirst(T);
-		void addLast(T);
 		void deleteFirst();
 		void deleteLast();
 		T first();
@@ -18,10 +16,10 @@ class LinkedList {
 		bool isEmpty();
 		void makeEmpty();
 		T operator[](int);
-		void push(T);
 		T pop();
+		void push(T);
 		void pushBack(T);
-		T size();
+		int size();
 
 		/*
 		bool del(int pos);
@@ -61,10 +59,10 @@ bool LinkedList<T>::add(T data, int pos){
 		return false;
 	}
 	if(pos == 0) {
-		addFirst(data);
+		push(data);
 	}
 	if(pos == size()){
-		addLast(data);
+		pushBack(data);
 	} else{
 		node<T> *aux = root;
 		node<T> *added;
@@ -81,33 +79,6 @@ bool LinkedList<T>::add(T data, int pos){
 		delete aux;
 	}
 	return true;
-}
-
-template <class T>
-void LinkedList<T>::addFirst(T data){
-	node<T> *aux;
-	aux->data = data;
-	aux->next = root;
-	root = aux;
-	delete aux;
-}
-
-template <class T>
-void LinkedList<T>::addLast(T data){
-	node<T> *last;
-	last->data = data;
-	if(root == nullptr){
-		root = last;
-		return;
-	} else{
-		node<T> *aux = root;
-		while(aux->next != nullptr){
-			aux = aux->next;
-		}
-		aux->next = last;
-		delete last;
-		delete aux;
-	}
 }
 
 template <class T>
@@ -254,7 +225,7 @@ void LinkedList<T>::pushBack(T iElem){
 }
 
 template <class T>
-T LinkedList<T>::size(){
+int LinkedList<T>::size(){
 	int iCount = 0;
 	node<T> *aux = root;
 
