@@ -133,8 +133,7 @@ TEST_CASE("8) FrontBackSplit() correctly returns the two halves", "[LinkedList]"
 	a.pushBack(30);
 	a.pushBack(40);
 	// General test case for even-numbered lists
-	node<int> *x = new node<int>();
-	node<int> *y = new node<int>();
+	node<int> *x, *y;
 	a.frontBackSplit(&x, &y);
 	REQUIRE(x->data == 10);
 	REQUIRE(x->next->data == 20);
@@ -148,19 +147,11 @@ TEST_CASE("8) FrontBackSplit() correctly returns the two halves", "[LinkedList]"
 	a.makeEmpty();
 	a.pushBack(10);
 	a.frontBackSplit(&x, &y);
-	
 	REQUIRE(x->data == 10);
 	REQUIRE(x == y);
 	REQUIRE(y->data == 10);
 	REQUIRE(x->next == NULL);
 	REQUIRE(y->next == NULL);
-
-	// Clean up
-	delete x;
-	delete y;
-	x = NULL;
-	y = NULL;
-
 }
 
 TEST_CASE("9) FrontBackSplit(): in odd-numbered lists the extra element is in the front list", "[LinkedList]") {
@@ -176,7 +167,6 @@ TEST_CASE("9) FrontBackSplit(): in odd-numbered lists the extra element is in th
 	REQUIRE(x->next->data == 20);
 	REQUIRE(y->data == 30);
 	REQUIRE(y->next == NULL);
-
 }
 
 // void insertAt(int, int)
@@ -242,14 +232,40 @@ TEST_CASE("13) deleteLast() correctly removes the last element from the list", "
 // add(T, int)
 TEST_CASE("16) add(T, int) correctly adds an element in the position required", "[LinkedList") {
 	LinkedList<int> x;
-	x.push(10);
+	bool bAdded = true;
+	REQUIRE(x.isEmpty());
+
+	// empty case and exceeding size available.
+	bAdded = x.add(100, 1);
+	REQUIRE(!bAdded);
+	REQUIRE(x.isEmpty());
+
+	// empty case and inside size.
+	bAdded = x.add(10, 0);
+	REQUIRE(bAdded);
+	REQUIRE(x.size() == 1);
+	REQUIRE(x[0] == 10);
+	
+	// not empty case
 	x.push(20);
 	x.push(30);
+	// 30 20 10
+	
 	x.add(70, 1);
+	// 30 70 20 10
+	
 	x.add(90, 3);
-	REQUIRE(x[0] == 10);
+	// 30 70 20 90 10
+
+	cout << x[0] << " " << x[1] << " " << x[2] << " " << x[3] << " " << x[4] << endl;
+	REQUIRE(x[0] == 30);
 	REQUIRE(x[1] == 70);
 	REQUIRE(x[2] == 20);
 	REQUIRE(x[3] == 90);
-	REQUIRE(x[4] == 30);
+	REQUIRE(x[4] == 10);
+
+	// case where position wanted is at the end.
+	x.add(50, 5);
+	REQUIRE(x.size() == 6);
+	REQUIRE(x[5] == 50);
 }

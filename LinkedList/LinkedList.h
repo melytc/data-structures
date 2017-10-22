@@ -58,25 +58,20 @@ bool LinkedList<T>::add(T data, int pos){
 	if(pos > size()){
 		return false;
 	}
-	if(pos == 0) {
+	else if(pos == 0) { // forgot to write else if instead of just if
 		push(data);
 	}
-	if(pos == size()){
+	else if(pos == size()){
 		pushBack(data);
 	} else{
 		node<T> *aux = root;
-		node<T> *added;
-		added->data = data;
 		
 		while(pos > 1){
 			aux = aux->next;
 			pos--;
 		}
-	
-		node<T> *others = aux->next;
-		aux->next = added;
-		added->next = others;
-		delete aux;
+		
+		aux->next = (new node<T>(data, aux->next));
 	}
 	return true;
 }
