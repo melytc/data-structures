@@ -4,6 +4,16 @@
         "list": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "bitset": "cpp",
+        "hash_map": "cpp",
+        "initializer_list": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_map": "cpp",
+        "utility": "cpp"
     }
 }

@@ -22,7 +22,7 @@ using namespace std;
 //	deleteLast
 
 // bool isEmpty()
-TEST_CASE("isEmpty operation correctly returns whether a list is empty", "[LinkedList]"){
+TEST_CASE("1) isEmpty operation correctly returns whether a list is empty", "[LinkedList]"){
 	LinkedList<int> a;
 	REQUIRE(a.isEmpty());
 	a.pushBack(10);
@@ -32,7 +32,7 @@ TEST_CASE("isEmpty operation correctly returns whether a list is empty", "[Linke
 }
 
 // [] operator
-TEST_CASE("[] operator returns the correct value for position i", "[LinkedList]") {
+TEST_CASE("2) [] operator returns the correct value for position i", "[LinkedList]") {
 	LinkedList<int> a;
 	CHECK_THROWS(a[0]);
 	a.pushBack(10);
@@ -45,7 +45,7 @@ TEST_CASE("[] operator returns the correct value for position i", "[LinkedList]"
 }
 
 // void pushBack(int)
-TEST_CASE("pushBack() correctly appends to the end of the list", "[LinkedList]") {
+TEST_CASE("3) pushBack() correctly appends to the end of the list", "[LinkedList]") {
 	LinkedList<int> a;
 	REQUIRE(a.root == NULL);
 	a.pushBack(10);
@@ -66,7 +66,7 @@ TEST_CASE("pushBack() correctly appends to the end of the list", "[LinkedList]")
 }
 
 // void push(int)
-TEST_CASE("push() correctly adds to the beginning of the list", "[LinkedList]") {
+TEST_CASE("4) push() correctly adds to the beginning of the list", "[LinkedList]") {
 	LinkedList<int> a;
 	a.push(10);
 	REQUIRE(a.first() == 10);
@@ -78,7 +78,7 @@ TEST_CASE("push() correctly adds to the beginning of the list", "[LinkedList]") 
 }
 
 // int first()
-TEST_CASE("first() returns the first element of the list", "[LinkedList]") {
+TEST_CASE("5) first() returns the first element of the list", "[LinkedList]") {
 	LinkedList<int> a;
 	REQUIRE(a.root == NULL);
 	a.pushBack(10);
@@ -88,7 +88,7 @@ TEST_CASE("first() returns the first element of the list", "[LinkedList]") {
 }
 
 // int size()
-TEST_CASE("size() returns the correct size of the list", "[LinkedList]") {
+TEST_CASE("6) size() returns the correct size of the list", "[LinkedList]") {
 	LinkedList<int> a;
 	REQUIRE(a.size() == 0);
 	a.pushBack(10);
@@ -112,7 +112,7 @@ TEST_CASE("size() returns the correct size of the list", "[LinkedList]") {
 }
 
 // void empty()
-TEST_CASE("empty() correctly destroys the list and sets root to NULL", "[LinkedList]") {
+TEST_CASE("7) empty() correctly destroys the list and sets root to NULL", "[LinkedList]") {
 	LinkedList<int> a;
 	a.pushBack(10);	
 	a.pushBack(20);	
@@ -126,7 +126,7 @@ TEST_CASE("empty() correctly destroys the list and sets root to NULL", "[LinkedL
 
 
 // FrontBackSplit()
-TEST_CASE("FrontBackSplit() correctly returns the two halves", "[LinkedList]") {
+TEST_CASE("8) FrontBackSplit() correctly returns the two halves", "[LinkedList]") {
 	LinkedList<int> a;
 	a.pushBack(10);
 	a.pushBack(20);
@@ -163,7 +163,7 @@ TEST_CASE("FrontBackSplit() correctly returns the two halves", "[LinkedList]") {
 
 }
 
-TEST_CASE("FrontBackSplit(): in odd-numbered lists the extra element is in the front list", "[LinkedList]") {
+TEST_CASE("9) FrontBackSplit(): in odd-numbered lists the extra element is in the front list", "[LinkedList]") {
 	LinkedList<int> a;
 	a.pushBack(10);
 	a.pushBack(20);
@@ -180,7 +180,7 @@ TEST_CASE("FrontBackSplit(): in odd-numbered lists the extra element is in the f
 }
 
 // void insertAt(int, int)
-TEST_CASE("insertAt(i) correctly inserts a new item at position i \n(provided i is in the range [0, length])", "[LinkedList]") {
+TEST_CASE("10) insertAt(i) correctly inserts a new item at position i \n(provided i is in the range [0, length])", "[LinkedList]") {
 	LinkedList<int> a;
 	a.pushBack(10);
 	a.insertAt(1, 20);
@@ -195,7 +195,7 @@ TEST_CASE("insertAt(i) correctly inserts a new item at position i \n(provided i 
 }
 
 // int pop()
-TEST_CASE("pop() correctly returns the first element", "[LinkedList]") {
+TEST_CASE("11) pop() correctly returns the first element", "[LinkedList]") {
 	LinkedList<int> x;
 	x.pushBack(1);
 	x.pushBack(2);
@@ -208,10 +208,8 @@ TEST_CASE("pop() correctly returns the first element", "[LinkedList]") {
 	REQUIRE(c == 3);
 	REQUIRE(x.size() == 0);
 	REQUIRE(x.isEmpty());
-}
-
-TEST_CASE("pop() correctly removes the first element from the list and returns its element", "[LinkedList]") {
-	LinkedList<int> x;
+	
+	
 	x.pushBack(10);
 	x.push(20);
 	x.pop();
@@ -219,8 +217,9 @@ TEST_CASE("pop() correctly removes the first element from the list and returns i
 	REQUIRE(x.first() == 10);
 }
 
+
 // deleteFirst()
-TEST_CASE("deleteFirst() correctly removes the first element from the list", "[LinkedList]") {
+TEST_CASE("12) deleteFirst() correctly removes the first element from the list", "[LinkedList]") {
 	LinkedList<int> x;
 	x.push(1);
 	x.push(2);
@@ -231,7 +230,7 @@ TEST_CASE("deleteFirst() correctly removes the first element from the list", "[L
 }
 
 // deleteLast()
-TEST_CASE("deleteLast() correctly removes the last element from the list", "[LinkedList]") {
+TEST_CASE("13) deleteLast() correctly removes the last element from the list", "[LinkedList]") {
 	LinkedList<int> x;
 	x.push(1);
 	x.push(2);
@@ -239,4 +238,40 @@ TEST_CASE("deleteLast() correctly removes the last element from the list", "[Lin
 	x.deleteLast();
 	REQUIRE(x.size() == 2);
 	REQUIRE(x[1] == 2);
+}
+
+// addFirst()
+TEST_CASE("14) addFirst correctly adds an element as the first element of the list", "[LinkedList") {
+	LinkedList<int> x;
+	
+	// empty case
+	x.addFirst(10);
+	REQUIRE(x.size() == 1);
+	REQUIRE(x[0] == 10);
+
+	// not empty case
+	x.push(10);
+	x.push(20);
+	x.push(30);
+	x.addFirst(100);
+	REQUIRE(x.size() == 4);
+	REQUIRE(x[0] == 100);
+}
+
+// addLast()
+TEST_CASE("15) addLast correctly adds an element as the last element of the list", "[LinkedList") {
+	LinkedList<int> x;
+	
+	// empty case 
+	x.addLast(10);
+	REQUIRE(x.size() == 1);
+	REQUIRE(x[0] == 10);
+	
+	// not empty case
+	x.push(10);
+	x.push(20);
+	x.push(30);
+	x.addLast(100);
+	REQUIRE(x.size() == 4);
+	REQUIRE(x[3] == 100);
 }

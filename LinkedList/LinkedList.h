@@ -7,6 +7,8 @@ template <class T>
 class LinkedList {
 	public:
 		LinkedList();
+		void addFirst(T);
+		void addLast(T);
 		void deleteFirst();
 		void deleteLast();
 		T first();
@@ -21,9 +23,6 @@ class LinkedList {
 		T size();
 
 		/*
-		void borra();
-		void addFirst(T data);
-		void addLast(T data);
 		bool add(T data, int pos);
 		bool del(int pos);
 		int delAll();
@@ -54,6 +53,33 @@ class LinkedList {
 template <class T>
 LinkedList<T>::LinkedList(){
 	root = nullptr;
+}
+
+template <class T>
+void LinkedList<T>::addFirst(T data){
+	node<T> *aux;
+	aux->data = data;
+	aux->next = root;
+	root = aux;
+	delete aux;
+}
+
+template <class T>
+void LinkedList<T>::addLast(T data){
+	node<T> *last;
+	last->data = data;
+	if(root == nullptr){
+		root = last;
+		return;
+	} else{
+		node<T> *aux = root;
+		while(aux->next != nullptr){
+			aux = aux->next;
+		}
+		aux->next = last;
+		delete last;
+		delete aux;
+	}
 }
 
 template <class T>
