@@ -152,6 +152,9 @@ TEST_CASE("8) FrontBackSplit() correctly returns the two halves", "[LinkedList]"
 	REQUIRE(y->data == 10);
 	REQUIRE(x->next == NULL);
 	REQUIRE(y->next == NULL);
+
+	x = NULL;
+	y = NULL;
 }
 
 TEST_CASE("9) FrontBackSplit(): in odd-numbered lists the extra element is in the front list", "[LinkedList]") {
