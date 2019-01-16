@@ -1,0 +1,6 @@
+- 0/1 knapsack (DP, backtracking, greedy)
+- Longest increasing subsequence
+- Max sum
+- Dijkstra
+- Floyd_Warshall
+- Subset sum
